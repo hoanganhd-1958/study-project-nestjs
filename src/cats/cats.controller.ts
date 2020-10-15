@@ -9,4 +9,9 @@ export class CatsController {
   show(): string {
     return this.catsService.show()
   }
+
+  @Get('profile')
+  profile(): string {
+    return 'sub-prefix'
+  }
 }
