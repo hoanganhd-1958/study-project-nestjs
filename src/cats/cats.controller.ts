@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, HttpException, HttpStatus } from '@nestjs/common';
 import { CatsService } from './cats.service';
 import { Cat } from './interfaces/cats.interface';
 
@@ -14,5 +14,13 @@ export class CatsController {
   @Get('profile')
   profile(): string {
     return 'sub-prefix'
+  }
+
+  @Get('test-exception')
+  async findAll() {
+    throw new HttpException({
+      status: HttpStatus.FORBIDDEN,
+      message: 'This is a custom error message'
+    }, HttpStatus.FORBIDDEN);
   }
 }
